@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xaufe.model.dao.EvaluateInfoMapper">
+  <resultMap id="BaseResultMap" type="com.xaufe.entity.EvaluateInfo">
+    <id column="evaluate_id" jdbcType="INTEGER" property="evaluateId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="zimu_type" jdbcType="VARCHAR" property="zimuType" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xaufe.entity.EvaluateInfoWithBLOBs">
+    <result column="evaluate_one" jdbcType="LONGVARCHAR" property="evaluateOne" />
+    <result column="evaluate_two" jdbcType="LONGVARCHAR" property="evaluateTwo" />
+    <result column="evaluate_three" jdbcType="LONGVARCHAR" property="evaluateThree" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    evaluate_id, user_id, zimu_type
+  </sql>
+  <sql id="Blob_Column_List">
+    evaluate_one, evaluate_two, evaluate_three
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_evaluateinfo
+    where evaluate_id = #{evaluateId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_evaluateinfo
+    where evaluate_id = #{evaluateId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xaufe.entity.EvaluateInfoWithBLOBs">
+    insert into t_evaluateinfo (evaluate_id, user_id, zimu_type, 
+      evaluate_one, evaluate_two, evaluate_three
+      )
+    values (#{evaluateId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{zimuType,jdbcType=VARCHAR}, 
+      #{evaluateOne,jdbcType=LONGVARCHAR}, #{evaluateTwo,jdbcType=LONGVARCHAR}, #{evaluateThree,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xaufe.entity.EvaluateInfoWithBLOBs">
+    insert into t_evaluateinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="evaluateId != null">
+        evaluate_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="zimuType != null">
+        zimu_type,
+      </if>
+      <if test="evaluateOne != null">
+        evaluate_one,
+      </if>
+      <if test="evaluateTwo != null">
+        evaluate_two,
+      </if>
+      <if test="evaluateThree != null">
+        evaluate_three,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="evaluateId != null">
+        #{evaluateId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="zimuType != null">
+        #{zimuType,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateOne != null">
+        #{evaluateOne,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="evaluateTwo != null">
+        #{evaluateTwo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="evaluateThree != null">
+        #{evaluateThree,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xaufe.entity.EvaluateInfoWithBLOBs">
+    update t_evaluateinfo
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="zimuType != null">
+        zimu_type = #{zimuType,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateOne != null">
+        evaluate_one = #{evaluateOne,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="evaluateTwo != null">
+        evaluate_two = #{evaluateTwo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="evaluateThree != null">
+        evaluate_three = #{evaluateThree,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where evaluate_id = #{evaluateId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xaufe.entity.EvaluateInfoWithBLOBs">
+    update t_evaluateinfo
+    set user_id = #{userId,jdbcType=INTEGER},
+      zimu_type = #{zimuType,jdbcType=VARCHAR},
+      evaluate_one = #{evaluateOne,jdbcType=LONGVARCHAR},
+      evaluate_two = #{evaluateTwo,jdbcType=LONGVARCHAR},
+      evaluate_three = #{evaluateThree,jdbcType=LONGVARCHAR}
+    where evaluate_id = #{evaluateId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xaufe.entity.EvaluateInfo">
+    update t_evaluateinfo
+    set user_id = #{userId,jdbcType=INTEGER},
+      zimu_type = #{zimuType,jdbcType=VARCHAR}
+    where evaluate_id = #{evaluateId,jdbcType=INTEGER}
+  </update>
+</mapper>

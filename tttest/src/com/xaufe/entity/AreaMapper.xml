@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xaufe.model.dao.AreaMapper" >
+  <resultMap id="BaseResultMap" type="com.xaufe.entity.Area" >
+    <id column="id" property="id" jdbcType="SMALLINT" />
+    <id column="keyid" property="keyid" jdbcType="SMALLINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="style" property="style" jdbcType="VARCHAR" />
+    <result column="parentid" property="parentid" jdbcType="SMALLINT" />
+    <result column="child" property="child" jdbcType="BIT" />
+    <result column="listorder" property="listorder" jdbcType="SMALLINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="siteid" property="siteid" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xaufe.entity.Area" extends="BaseResultMap" >
+    <result column="arrchildid" property="arrchildid" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, keyid, name, style, parentid, child, listorder, description, siteid
+  </sql>
+  <sql id="Blob_Column_List" >
+    arrchildid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="com.xaufe.entity.AreaKey" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from area
+    where id = #{id,jdbcType=SMALLINT}
+      and keyid = #{keyid,jdbcType=SMALLINT}
+  </select>
+
+  <select id="selectNeedArea" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from area
+    where parentid = #{0}
+    and style = #{1}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="com.xaufe.entity.AreaKey" >
+    delete from area
+    where id = #{id,jdbcType=SMALLINT}
+      and keyid = #{keyid,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.xaufe.entity.Area" >
+    insert into area (id, keyid, name, 
+      style, parentid, child, 
+      listorder, description, siteid, 
+      arrchildid)
+    values (#{id,jdbcType=SMALLINT}, #{keyid,jdbcType=SMALLINT}, #{name,jdbcType=VARCHAR}, 
+      #{style,jdbcType=VARCHAR}, #{parentid,jdbcType=SMALLINT}, #{child,jdbcType=BIT}, 
+      #{listorder,jdbcType=SMALLINT}, #{description,jdbcType=VARCHAR}, #{siteid,jdbcType=SMALLINT}, 
+      #{arrchildid,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xaufe.entity.Area" >
+    insert into area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="keyid != null" >
+        keyid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="style != null" >
+        style,
+      </if>
+      <if test="parentid != null" >
+        parentid,
+      </if>
+      <if test="child != null" >
+        child,
+      </if>
+      <if test="listorder != null" >
+        listorder,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="siteid != null" >
+        siteid,
+      </if>
+      <if test="arrchildid != null" >
+        arrchildid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=SMALLINT},
+      </if>
+      <if test="keyid != null" >
+        #{keyid,jdbcType=SMALLINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="style != null" >
+        #{style,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=SMALLINT},
+      </if>
+      <if test="child != null" >
+        #{child,jdbcType=BIT},
+      </if>
+      <if test="listorder != null" >
+        #{listorder,jdbcType=SMALLINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="siteid != null" >
+        #{siteid,jdbcType=SMALLINT},
+      </if>
+      <if test="arrchildid != null" >
+        #{arrchildid,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xaufe.entity.Area" >
+    update area
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="style != null" >
+        style = #{style,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        parentid = #{parentid,jdbcType=SMALLINT},
+      </if>
+      <if test="child != null" >
+        child = #{child,jdbcType=BIT},
+      </if>
+      <if test="listorder != null" >
+        listorder = #{listorder,jdbcType=SMALLINT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="siteid != null" >
+        siteid = #{siteid,jdbcType=SMALLINT},
+      </if>
+      <if test="arrchildid != null" >
+        arrchildid = #{arrchildid,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=SMALLINT}
+      and keyid = #{keyid,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xaufe.entity.Area" >
+    update area
+    set name = #{name,jdbcType=VARCHAR},
+      style = #{style,jdbcType=VARCHAR},
+      parentid = #{parentid,jdbcType=SMALLINT},
+      child = #{child,jdbcType=BIT},
+      listorder = #{listorder,jdbcType=SMALLINT},
+      description = #{description,jdbcType=VARCHAR},
+      siteid = #{siteid,jdbcType=SMALLINT},
+      arrchildid = #{arrchildid,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=SMALLINT}
+      and keyid = #{keyid,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xaufe.entity.Area" >
+    update area
+    set name = #{name,jdbcType=VARCHAR},
+      style = #{style,jdbcType=VARCHAR},
+      parentid = #{parentid,jdbcType=SMALLINT},
+      child = #{child,jdbcType=BIT},
+      listorder = #{listorder,jdbcType=SMALLINT},
+      description = #{description,jdbcType=VARCHAR},
+      siteid = #{siteid,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=SMALLINT}
+      and keyid = #{keyid,jdbcType=SMALLINT}
+  </update>
+</mapper>

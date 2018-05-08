@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xaufe.model.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.xaufe.entity.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_realname" property="userRealname" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_level" property="userLevel" jdbcType="INTEGER" />
+    <result column="user_address" property="userAddress" jdbcType="VARCHAR" />
+    <result column="user_postcode" property="userPostcode" jdbcType="VARCHAR" />
+    <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_createtime" property="userCreatetime" jdbcType="DATE" />
+    <result column="user_desc" property="userDesc" jdbcType="VARCHAR" />
+    <result column="user_img" property="userImg" jdbcType="VARCHAR" />
+    <result column="user_question" property="userQuestion" jdbcType="VARCHAR" />
+    <result column="user_answer" property="userAnswer" jdbcType="VARCHAR" />
+    <result column="user_diqv" property="userDiqv" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="user_subject_type" property="userSubjectType" jdbcType="VARCHAR" />
+    <result column="user_inter" property="userInter" jdbcType="VARCHAR" />
+    <result column="user_qq" property="userQq" jdbcType="VARCHAR" />
+    <result column="user_grade_one" property="userGradeOne" jdbcType="VARCHAR" />
+    <result column="user_grade_two" property="userGradeTwo" jdbcType="VARCHAR" />
+    <result column="user_grade_three" property="userGradeThree" jdbcType="VARCHAR" />
+    <result column="user_scores" property="userScores" jdbcType="INTEGER" />
+    <result column="user_rank" property="userRank" jdbcType="INTEGER" />
+    <result column="user_year" property="userYear" jdbcType="VARCHAR" />
+    <result column="user_province" property="userProvince" jdbcType="INTEGER" />
+    <result column="user_city" property="userCity" jdbcType="INTEGER" />
+    <result column="user_area" property="userArea" jdbcType="INTEGER" />
+    <result column="user_pic" property="userPic" jdbcType="VARCHAR" />
+    <result column="user_grade_one_type" property="userGradeOneType" jdbcType="VARCHAR" />
+    <result column="user_grade_two_type" property="userGradeTwoType" jdbcType="VARCHAR" />
+    <result column="user_grade_three_type" property="userGradeThreeType" jdbcType="VARCHAR" />
+    <result column="user_university" property="userUniversity" jdbcType="VARCHAR" />
+    <result column="user_department" property="userDepartment" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xaufe.entity.User" extends="BaseResultMap" >
+    <result column="user_xinde" property="userXinde" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, admin_id, user_name, user_realname, user_password, user_level, user_address, 
+    user_postcode, user_tel, user_email, user_createtime, user_desc, user_img, user_question, 
+    user_answer, user_diqv, user_sex, user_subject_type, user_inter, user_qq, user_grade_one, 
+    user_grade_two, user_grade_three, user_scores, user_rank, user_year, user_province, 
+    user_city, user_area, user_pic, user_grade_one_type, user_grade_two_type, user_grade_three_type, 
+    user_university, user_department
+  </sql>
+  <sql id="Blob_Column_List" >
+    user_xinde
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectUserByEmail" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_user
+    where user_email = #{userEmail,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getUsersEmail" resultType="String" >
+    select user_email
+    from t_user
+  </select>
+
+  <select id="selectEvaluateOne" resultType="String" >
+    select user_grade_one
+    from t_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectEvaluateTwo" resultType="String" >
+    select user_grade_two
+    from t_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectEvaluateThree" resultType="String" >
+    select user_grade_three
+    from t_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xaufe.entity.User" >
+    insert into t_user (user_id, admin_id, user_name, 
+      user_realname, user_password, user_level, 
+      user_address, user_postcode, user_tel, 
+      user_email, user_createtime, user_desc, 
+      user_img, user_question, user_answer, 
+      user_diqv, user_sex, user_subject_type, 
+      user_inter, user_qq, user_grade_one, 
+      user_grade_two, user_grade_three, user_scores, 
+      user_rank, user_year, user_province, 
+      user_city, user_area, user_pic, 
+      user_grade_one_type, user_grade_two_type, user_grade_three_type, 
+      user_university, user_department, user_xinde
+      )
+    values (#{userId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{userRealname,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userLevel,jdbcType=INTEGER}, 
+      #{userAddress,jdbcType=VARCHAR}, #{userPostcode,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR}, 
+      #{userEmail,jdbcType=VARCHAR}, #{userCreatetime,jdbcType=DATE}, #{userDesc,jdbcType=VARCHAR}, 
+      #{userImg,jdbcType=VARCHAR}, #{userQuestion,jdbcType=VARCHAR}, #{userAnswer,jdbcType=VARCHAR}, 
+      #{userDiqv,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, #{userSubjectType,jdbcType=VARCHAR}, 
+      #{userInter,jdbcType=VARCHAR}, #{userQq,jdbcType=VARCHAR}, #{userGradeOne,jdbcType=VARCHAR}, 
+      #{userGradeTwo,jdbcType=VARCHAR}, #{userGradeThree,jdbcType=VARCHAR}, #{userScores,jdbcType=INTEGER}, 
+      #{userRank,jdbcType=INTEGER}, #{userYear,jdbcType=VARCHAR}, #{userProvince,jdbcType=INTEGER}, 
+      #{userCity,jdbcType=INTEGER}, #{userArea,jdbcType=INTEGER}, #{userPic,jdbcType=VARCHAR}, 
+      #{userGradeOneType,jdbcType=VARCHAR}, #{userGradeTwoType,jdbcType=VARCHAR}, #{userGradeThreeType,jdbcType=VARCHAR}, 
+      #{userUniversity,jdbcType=VARCHAR}, #{userDepartment,jdbcType=VARCHAR}, #{userXinde,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xaufe.entity.User" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userRealname != null" >
+        user_realname,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+      <if test="userLevel != null" >
+        user_level,
+      </if>
+      <if test="userAddress != null" >
+        user_address,
+      </if>
+      <if test="userPostcode != null" >
+        user_postcode,
+      </if>
+      <if test="userTel != null" >
+        user_tel,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="userCreatetime != null" >
+        user_createtime,
+      </if>
+      <if test="userDesc != null" >
+        user_desc,
+      </if>
+      <if test="userImg != null" >
+        user_img,
+      </if>
+      <if test="userQuestion != null" >
+        user_question,
+      </if>
+      <if test="userAnswer != null" >
+        user_answer,
+      </if>
+      <if test="userDiqv != null" >
+        user_diqv,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="userSubjectType != null" >
+        user_subject_type,
+      </if>
+      <if test="userInter != null" >
+        user_inter,
+      </if>
+      <if test="userQq != null" >
+        user_qq,
+      </if>
+      <if test="userGradeOne != null" >
+        user_grade_one,
+      </if>
+      <if test="userGradeTwo != null" >
+        user_grade_two,
+      </if>
+      <if test="userGradeThree != null" >
+        user_grade_three,
+      </if>
+      <if test="userScores != null" >
+        user_scores,
+      </if>
+      <if test="userRank != null" >
+        user_rank,
+      </if>
+      <if test="userYear != null" >
+        user_year,
+      </if>
+      <if test="userProvince != null" >
+        user_province,
+      </if>
+      <if test="userCity != null" >
+        user_city,
+      </if>
+      <if test="userArea != null" >
+        user_area,
+      </if>
+      <if test="userPic != null" >
+        user_pic,
+      </if>
+      <if test="userGradeOneType != null" >
+        user_grade_one_type,
+      </if>
+      <if test="userGradeTwoType != null" >
+        user_grade_two_type,
+      </if>
+      <if test="userGradeThreeType != null" >
+        user_grade_three_type,
+      </if>
+      <if test="userUniversity != null" >
+        user_university,
+      </if>
+      <if test="userDepartment != null" >
+        user_department,
+      </if>
+      <if test="userXinde != null" >
+        user_xinde,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealname != null" >
+        #{userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userLevel != null" >
+        #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="userAddress != null" >
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userPostcode != null" >
+        #{userPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreatetime != null" >
+        #{userCreatetime,jdbcType=DATE},
+      </if>
+      <if test="userDesc != null" >
+        #{userDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null" >
+        #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="userQuestion != null" >
+        #{userQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="userAnswer != null" >
+        #{userAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="userDiqv != null" >
+        #{userDiqv,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userSubjectType != null" >
+        #{userSubjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="userInter != null" >
+        #{userInter,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null" >
+        #{userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="userGradeOne != null" >
+        #{userGradeOne,jdbcType=VARCHAR},
+      </if>
+      <if test="userGradeTwo != null" >
+        #{userGradeTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="userGradeThree != null" >
+        #{userGradeThree,jdbcType=VARCHAR},
+      </if>
+      <if test="userScores != null" >
+        #{userScores,jdbcType=INTEGER},
+      </if>
+      <if test="userRank != null" >
+        #{userRank,jdbcType=INTEGER},
+      </if>
+      <if test="userYear != null" >
+        #{userYear,jdbcType=VARCHAR},
+      </if>
+      <if test="userProvince != null" >
+        #{userProvince,jdbcType=INTEGER},
+      </if>
+      <if test="userCity != null" >
+        #{userCity,jdbcType=INTEGER},
+      </if>
+      <if test="userArea != null" >
+        #{userArea,jdbcType=INTEGER},
+      </if>
+      <if test="userPic != null" >
+        #{userPic,jdbcType=VARCHAR},
+      </if>
+      <if test="userGradeOneType != null" >
+        #{userGradeOneType,jdbcType=VARCHAR},
+      </if>
+      <if test="userGradeTwoType != null" >
+        #{userGradeTwoType,jdbcType=VARCHAR},
+      </if>
+      <if test="userGradeThreeType != null" >
+        #{userGradeThreeType,jdbcType=VARCHAR},
+      </if>
+      <if test="userUniversity != null" >
+        #{userUniversity,jdbcType=VARCHAR},
+      </if>
+      <if test="userDepartment != null" >
+        #{userDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="userXinde != null" >
+        #{userXinde,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xaufe.entity.User" >
+    update t_user
+    <set >
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealname != null" >
+        user_realname = #{userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userLevel != null" >
+        user_level = #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="userAddress != null" >
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userPostcode != null" >
+        user_postcode = #{userPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreatetime != null" >
+        user_createtime = #{userCreatetime,jdbcType=DATE},
+      </if>
+      <if test="userDesc != null" >
+        user_desc = #{userDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null" >
+        user_img = #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="userQuestion != null" >
+        user_question = #{userQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="userAnswer != null" >
+        user_answer = #{userAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="userDiqv != null" >
+        user_diqv = #{userDiqv,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userSubjectType != null" >
+        user_subject_type = #{userSubjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="userInter != null" >
+        user_inter = #{userInter,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null" >
+        user_qq = #{userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="userGradeOne != null" >
+        user_grade_one = #{userGradeOne,jdbcType=VARCHAR},
+      </if>
+      <if test="userGradeTwo != null" >
+        user_grade_two = #{userGradeTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="userGradeThree != null" >
+        user_grade_three = #{userGradeThree,jdbcType=VARCHAR},
+      </if>
+      <if test="userScores != null" >
+        user_scores = #{userScores,jdbcType=INTEGER},
+      </if>
+      <if test="userRank != null" >
+        user_rank = #{userRank,jdbcType=INTEGER},
+      </if>
+      <if test="userYear != null" >
+        user_year = #{userYear,jdbcType=VARCHAR},
+      </if>
+      <if test="userProvince != null" >
+        user_province = #{userProvince,jdbcType=INTEGER},
+      </if>
+      <if test="userCity != null" >
+        user_city = #{userCity,jdbcType=INTEGER},
+      </if>
+      <if test="userArea != null" >
+        user_area = #{userArea,jdbcType=INTEGER},
+      </if>
+      <if test="userPic != null" >
+        user_pic = #{userPic,jdbcType=VARCHAR},
+      </if>
+      <if test="userGradeOneType != null" >
+        user_grade_one_type = #{userGradeOneType,jdbcType=VARCHAR},
+      </if>
+      <if test="userGradeTwoType != null" >
+        user_grade_two_type = #{userGradeTwoType,jdbcType=VARCHAR},
+      </if>
+      <if test="userGradeThreeType != null" >
+        user_grade_three_type = #{userGradeThreeType,jdbcType=VARCHAR},
+      </if>
+      <if test="userUniversity != null" >
+        user_university = #{userUniversity,jdbcType=VARCHAR},
+      </if>
+      <if test="userDepartment != null" >
+        user_department = #{userDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="userXinde != null" >
+        user_xinde = #{userXinde,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xaufe.entity.User" >
+    update t_user
+    set admin_id = #{adminId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_realname = #{userRealname,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_level = #{userLevel,jdbcType=INTEGER},
+      user_address = #{userAddress,jdbcType=VARCHAR},
+      user_postcode = #{userPostcode,jdbcType=VARCHAR},
+      user_tel = #{userTel,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_createtime = #{userCreatetime,jdbcType=DATE},
+      user_desc = #{userDesc,jdbcType=VARCHAR},
+      user_img = #{userImg,jdbcType=VARCHAR},
+      user_question = #{userQuestion,jdbcType=VARCHAR},
+      user_answer = #{userAnswer,jdbcType=VARCHAR},
+      user_diqv = #{userDiqv,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      user_subject_type = #{userSubjectType,jdbcType=VARCHAR},
+      user_inter = #{userInter,jdbcType=VARCHAR},
+      user_qq = #{userQq,jdbcType=VARCHAR},
+      user_grade_one = #{userGradeOne,jdbcType=VARCHAR},
+      user_grade_two = #{userGradeTwo,jdbcType=VARCHAR},
+      user_grade_three = #{userGradeThree,jdbcType=VARCHAR},
+      user_scores = #{userScores,jdbcType=INTEGER},
+      user_rank = #{userRank,jdbcType=INTEGER},
+      user_year = #{userYear,jdbcType=VARCHAR},
+      user_province = #{userProvince,jdbcType=INTEGER},
+      user_city = #{userCity,jdbcType=INTEGER},
+      user_area = #{userArea,jdbcType=INTEGER},
+      user_pic = #{userPic,jdbcType=VARCHAR},
+      user_grade_one_type = #{userGradeOneType,jdbcType=VARCHAR},
+      user_grade_two_type = #{userGradeTwoType,jdbcType=VARCHAR},
+      user_grade_three_type = #{userGradeThreeType,jdbcType=VARCHAR},
+      user_university = #{userUniversity,jdbcType=VARCHAR},
+      user_department = #{userDepartment,jdbcType=VARCHAR},
+      user_xinde = #{userXinde,jdbcType=LONGVARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xaufe.entity.User" >
+    update t_user
+    set admin_id = #{adminId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_realname = #{userRealname,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_level = #{userLevel,jdbcType=INTEGER},
+      user_address = #{userAddress,jdbcType=VARCHAR},
+      user_postcode = #{userPostcode,jdbcType=VARCHAR},
+      user_tel = #{userTel,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_createtime = #{userCreatetime,jdbcType=DATE},
+      user_desc = #{userDesc,jdbcType=VARCHAR},
+      user_img = #{userImg,jdbcType=VARCHAR},
+      user_question = #{userQuestion,jdbcType=VARCHAR},
+      user_answer = #{userAnswer,jdbcType=VARCHAR},
+      user_diqv = #{userDiqv,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      user_subject_type = #{userSubjectType,jdbcType=VARCHAR},
+      user_inter = #{userInter,jdbcType=VARCHAR},
+      user_qq = #{userQq,jdbcType=VARCHAR},
+      user_grade_one = #{userGradeOne,jdbcType=VARCHAR},
+      user_grade_two = #{userGradeTwo,jdbcType=VARCHAR},
+      user_grade_three = #{userGradeThree,jdbcType=VARCHAR},
+      user_scores = #{userScores,jdbcType=INTEGER},
+      user_rank = #{userRank,jdbcType=INTEGER},
+      user_year = #{userYear,jdbcType=VARCHAR},
+      user_province = #{userProvince,jdbcType=INTEGER},
+      user_city = #{userCity,jdbcType=INTEGER},
+      user_area = #{userArea,jdbcType=INTEGER},
+      user_pic = #{userPic,jdbcType=VARCHAR},
+      user_grade_one_type = #{userGradeOneType,jdbcType=VARCHAR},
+      user_grade_two_type = #{userGradeTwoType,jdbcType=VARCHAR},
+      user_grade_three_type = #{userGradeThreeType,jdbcType=VARCHAR},
+      user_university = #{userUniversity,jdbcType=VARCHAR},
+      user_department = #{userDepartment,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateUserGradeOne" >
+    update t_user
+    set user_grade_one = #{1}
+    where user_id = #{0}
+  </update>
+
+  <update id="updateUserGradeTwo" >
+    update t_user
+    set user_grade_two = #{1}
+    where user_id = #{0}
+  </update>
+
+  <update id="updateUserGradeThree" >
+    update t_user
+    set user_grade_three = #{1}
+    where user_id = #{0}
+  </update>
+</mapper>

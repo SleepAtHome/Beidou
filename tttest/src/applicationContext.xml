@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	 <context:property-placeholder ignore-unresolvable="true" location="classpath:jdbc.properties" />
+     
+     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc_driver}"/>
+		<property name="url" value="${jdbc_url}"/>
+		<property name="username" value="${jdbc_user}"/>
+		<property name="password" value="${jdbc_password}"/>
+	 </bean>
+	 
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name="dataSource" ref="dataSource" ></property>
+
+		<property name="mapperLocations" value="classpath:com/xaufe/entity/*Mapper.xml" />
+		<property name="typeAliasesPackage" value="com.xaufe.entity" />
+	</bean>
+
+
+	<!-- 配置扫描报，加载(向spring申请注册)dao对象 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.xaufe.model.dao"></property>
+	</bean>
+
+
+
+	<context:component-scan base-package="com.xaufe.model.service" />
+	
+
+	
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+		<property name="config">
+			<bean class="com.google.code.kaptcha.util.Config">
+				<constructor-arg>
+					<props>
+						<prop key="kaptcha.image.width">120</prop>
+						<prop key="kaptcha.image.height">34</prop>
+						<prop key="kaptcha.border">no</prop>
+						<prop key="kaptcha.textproducer.font.color">black</prop>
+						<prop key="kaptcha.textproducer.char.space">5</prop>
+					</props>
+				</constructor-arg>
+
+			</bean>
+		</property>
+	</bean>
+
+
+</beans>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xaufe.model.dao.QuestionsMapper" >
+  <resultMap id="BaseResultMap" type="com.xaufe.entity.Questions" >
+    <id column="question_id" property="questionId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="question_title" property="questionTitle" jdbcType="VARCHAR" />
+    <result column="question_inter" property="questionInter" jdbcType="INTEGER" />
+    <result column="question_time" property="questionTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xaufe.entity.Questions" extends="BaseResultMap" >
+    <result column="question_contents" property="questionContents" jdbcType="LONGVARCHAR" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    question_id, user_id, question_title, question_inter, question_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    question_contents
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_questions
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getAllQuestions" resultMap="ResultMapWithBLOBs" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_questions
+  </select>
+
+  <select id="getUserAllQuestions" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_questions
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getFiltrateQuestions" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select *
+    from t_questions
+    where question_title = #{0}
+  </select>
+
+  <select id="getAllQuestionsNum" resultType="java.lang.Integer" >
+    SELECT COUNT(question_id) FROM t_questions
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_questions
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xaufe.entity.Questions" >
+    insert into t_questions (user_id, question_title,
+      question_inter, question_time, question_contents
+      )
+    values (#{userId,jdbcType=INTEGER}, #{questionTitle,jdbcType=VARCHAR},
+      #{questionInter,jdbcType=INTEGER}, #{questionTime,jdbcType=TIMESTAMP}, #{questionContents,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xaufe.entity.Questions" >
+    insert into t_questions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        question_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="questionTitle != null" >
+        question_title,
+      </if>
+      <if test="questionInter != null" >
+        question_inter,
+      </if>
+      <if test="questionTime != null" >
+        question_time,
+      </if>
+      <if test="questionContents != null" >
+        question_contents,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="questionTitle != null" >
+        #{questionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="questionInter != null" >
+        #{questionInter,jdbcType=INTEGER},
+      </if>
+      <if test="questionTime != null" >
+        #{questionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="questionContents != null" >
+        #{questionContents,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xaufe.entity.Questions" >
+    update t_questions
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="questionTitle != null" >
+        question_title = #{questionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="questionInter != null" >
+        question_inter = #{questionInter,jdbcType=INTEGER},
+      </if>
+      <if test="questionTime != null" >
+        question_time = #{questionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="questionContents != null" >
+        question_contents = #{questionContents,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xaufe.entity.Questions" >
+    update t_questions
+    set user_id = #{userId,jdbcType=INTEGER},
+      question_title = #{questionTitle,jdbcType=VARCHAR},
+      question_inter = #{questionInter,jdbcType=INTEGER},
+      question_time = #{questionTime,jdbcType=TIMESTAMP},
+      question_contents = #{questionContents,jdbcType=LONGVARCHAR}
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xaufe.entity.Questions" >
+    update t_questions
+    set user_id = #{userId,jdbcType=INTEGER},
+      question_title = #{questionTitle,jdbcType=VARCHAR},
+      question_inter = #{questionInter,jdbcType=INTEGER},
+      question_time = #{questionTime,jdbcType=TIMESTAMP}
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </update>
+</mapper>
