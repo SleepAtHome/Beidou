@@ -553,4 +553,10 @@
     set user_grade_three = #{1}
     where user_id = #{0}
   </update>
+
+  <update id="updateUserPassword" >
+    update t_user
+    set user_password = #{1}
+    where user_id = #{0}
+  </update>
 </mapper>

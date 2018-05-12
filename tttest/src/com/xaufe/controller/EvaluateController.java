@@ -216,6 +216,11 @@ public class EvaluateController {
         String type2=evaluateService.getEvaluateTwo(olUserId);
         String type3=evaluateService.getEvaluateThree(olUserId);
 
+        if (null == type3) {
+            modelAndView.setViewName("evaluate_page/evaluate_list1");
+            return modelAndView;
+        }
+
         int[] outcome1=string2IntArr(type1);
         int[] outcome2=string2IntArr(type2);
         int[] outcome3=string2IntArr(type3);
@@ -231,6 +236,7 @@ public class EvaluateController {
         modelAndView.addObject("outcome1JSON",jsonObject1);
         modelAndView.addObject("outcome2JSON",jsonObject2);
         modelAndView.addObject("outcome3JSON",jsonObject3);
+
 
         return modelAndView;
     }

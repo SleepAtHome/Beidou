@@ -71,12 +71,13 @@
                 <ol class="breadcrumb" id="aaa">
                     <li><a href="#">首页</a></li>
                     <li><a href="#">用户中心</a></li>
-                    <li class="active">更新信息</li>
+                    <li><a href="#">个人资料</a></li>
+                    <li class="active">修改密码</li>
                 </ol>
             </div>
 
             <ul class="nav nav-pills nav-tabs">
-                <li role="presentation"><a href="#">个人资料</a></li>
+                <li role="presentation"><a href="${pageContext.request.contextPath}/jump/Jump2user_info">个人资料</a></li>
                 <li role="presentation"><a href="#">更新信息</a></li>
                 <li role="presentation" class="active"><a href="#">修改密码</a></li>
             </ul>
