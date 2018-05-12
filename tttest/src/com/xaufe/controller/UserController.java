@@ -17,11 +17,12 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static com.xaufe.util.Constant.ONLINE_USER;
+
 
 @Controller
 @RequestMapping("user")
 public class UserController {
-    private static final String ONLINE_USER ="OnlineUser";
     @Autowired
     UserService userService;
     @RequestMapping("user_regist")

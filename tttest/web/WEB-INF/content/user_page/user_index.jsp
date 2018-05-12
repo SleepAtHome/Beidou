@@ -38,7 +38,7 @@
 							</ol>
 					</div>
 					 <div class="jumbotron">
-						 <h3>Welcome to</h3>
+						 <h3>${sessionScope.OnlineUser.userName},Welcome to</h3>
 						 <h1>北斗星报考网</h1>
 						 <p>1.通过性格、心理的测试为考生量身定制出适合自己的学习计划，专业，学校<br>
 						 2.通过测试更加深入了解自己，从而选择最适合自己的学校和专业</p>

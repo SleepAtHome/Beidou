@@ -176,7 +176,7 @@
 <div class="container">
 	<h1 align="center">用户注册</h1>
 	<div style="text-align: center;">
-		<form class="form-horizontal" action="${pageContext.request.contextPath}/question/user_regist" method="post" onsubmit="return check();">
+		<form class="form-horizontal" action="${pageContext.request.contextPath}/user/user_regist" method="post" onsubmit="return check();">
 			<div class="form-group ">
 				<label class="col-sm-3 control-label"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> &nbsp;&nbsp;填写注册信息：</label>
 				<div class="col-sm-6">
