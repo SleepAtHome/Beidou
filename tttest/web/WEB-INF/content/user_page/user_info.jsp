@@ -82,7 +82,7 @@ KindEditor.ready(function(K) {
                      <ul class="nav nav-pills nav-tabs">
 						  <li role="presentation" class="active"><a href="#">个人资料</a></li>
 						  <li role="presentation"><a href="#">更新信息</a></li>
-						  <li role="presentation"><a href="#">修改密码</a></li>
+						  <li role="presentation"><a href="${pageContext.request.contextPath}/user/user_password_modify">修改密码</a></li>
 					</ul>
 					<div style="height: 40px;"></div>
 

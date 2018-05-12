@@ -25,6 +25,36 @@ import static com.xaufe.util.Constant.ONLINE_USER;
 public class UserController {
     @Autowired
     UserService userService;
+
+    //跳转到user_password_modify
+    @RequestMapping("user_password_modify")
+    public String Jump2userpasswordmodify(){
+        return "user_page/user_password_modify";
+    }
+
+    /**
+     * 用户修改密码
+     * @param req
+     * @param resp
+     * @return
+     */
+    @RequestMapping("password_modify")
+    public String modifyUserPassword(HttpServletRequest req, HttpServletResponse resp){
+        String userNewPassword = req.getParameter("userNewPassword");
+        User user = (User) req.getSession().getAttribute(ONLINE_USER);
+        Integer userId = user.getUserId();
+        userService.modifyUserPassword(userId, userNewPassword);
+        req.setAttribute("msg","修改密码成功");
+        return "redirect:login";
+    }
+
+    /**
+     * 用户注册
+     * @param user
+     * @param req
+     * @param resp
+     * @return
+     */
     @RequestMapping("user_regist")
     public String registUser(User user, HttpServletRequest req, HttpServletResponse resp){
         userService.registUser(user);
@@ -32,9 +62,15 @@ public class UserController {
         return "redirect:login";
     }
 
+    /**
+     * 用户登录
+     * @param user
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("user_login")
     public String userLogin(User user,HttpServletRequest request, HttpSession session){
-        System.out.println("用户登录");
         User userData=userService.getUserByEmail(user.getUserEmail());
         System.out.println(userData.getUserId());
 
@@ -54,6 +90,11 @@ public class UserController {
         }
     }
 
+    /**
+     * 用户注销
+     * @param session
+     * @return
+     */
     @RequestMapping("user_logout")
     public ModelAndView user_logout(HttpSession session){
 
@@ -67,6 +108,13 @@ public class UserController {
 
     }
 
+    /**
+     * 用户注册测试
+     * @param user
+     * @param req
+     * @param resp
+     * @return
+     */
     @RequestMapping("regist")
     public String regist(User user, HttpServletRequest req, HttpServletResponse resp){
         System.out.println(user.getUserEmail());
@@ -82,6 +130,13 @@ public class UserController {
         return "redirect:login";
     }
 
+    /**
+     * 用户更新心得
+     * @param user
+     * @param req
+     * @param resp
+     * @return
+     */
     @RequestMapping("user_update_xinde")
     public String updateXindeUser(User user, HttpServletRequest req, HttpServletResponse resp) {
         User userData= (User) req.getSession().getAttribute(ONLINE_USER);

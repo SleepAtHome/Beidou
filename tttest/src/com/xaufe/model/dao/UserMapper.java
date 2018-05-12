@@ -31,9 +31,11 @@ public interface UserMapper {
     //修改用户成绩3
     int updateUserGradeThree(Integer userId,String evaluate3Outcomestr);
 
-    //查询用户成绩
+    // 查询用户成绩
     String selectEvaluateOne(int userId);
     String selectEvaluateTwo(int userId);
     String selectEvaluateThree(int userId);
 
+    // 用户修改密码
+    int updateUserPassword(Integer userId, String userNewPassword);
 }

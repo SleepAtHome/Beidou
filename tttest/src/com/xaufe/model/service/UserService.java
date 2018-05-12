@@ -11,11 +11,12 @@ import java.util.List;
 public interface UserService {
 
 
-    public void registUser(User user);
-    public User getUserByEmail(String userEmail);
-    public List<String> getUsersEmail();
+    void registUser(User user);
+    User getUserByEmail(String userEmail);
+    List<String> getUsersEmail();
 
-    public void updateUser(User user);
+    void updateUser(User user);
+    void modifyUserPassword(Integer userId, String userNewPassword);
 
 
 

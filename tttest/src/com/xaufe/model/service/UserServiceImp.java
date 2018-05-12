@@ -34,6 +34,11 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    public void modifyUserPassword(Integer userId, String userNewPassword) {
+        userMapper.updateUserPassword(userId, userNewPassword);
+    }
+
+    @Override
     public List<String> getUsersEmail() {
         List<String> userEmail=userMapper.getUsersEmail();
         return userEmail;
