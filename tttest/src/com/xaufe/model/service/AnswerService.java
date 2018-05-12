@@ -9,5 +9,8 @@ import java.util.List;
  */
 public interface AnswerService {
     //根据问题id得到答案列表
-    public List<Answer> getAnswerByQuestion(int questionId);
+    List<Answer> getAnswerByQuestion(int questionId);
+
+    // 增加一个回答
+    void addAnswer(Answer answer);
 }

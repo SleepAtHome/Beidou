@@ -168,20 +168,16 @@
                                 <h4 class="modal-title  text-info" id="myModalLabel">添加评论</h4>
                             </div>
 
-                            <form id="savechanform" class="form-horizontal" action="answer" method="post">
-                                <input type="hidden" name="action" value="add">
-                                <input type="hidden" name="questions_id" value="<%=q.getQuestionId()%>"/>
+                            <form id="savechanform" class="form-horizontal" action="${pageContext.request.contextPath}/answer/addAnswer" method="post">
+                                <input type="hidden" name="questionId" value="<%=q.getQuestionId()%>"/>
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <!--  <input type="hidden" name="contents" id="ttt"/> -->
-                                        <textarea name="contents" id="txt" style="width:100%;height:300px;"></textarea>
+                                        <textarea name="answerContents" id="txt" style="width:100%;height:300px;"></textarea>
                                     </div>
                                 </div>
-
                                 <div class="modal-footer">
-
                                     <button type="button" class="btn btn-default" data -dismiss="modal">Close</button>
-
                                     <button type="submit" class="btn btn-primary" id="savechan">Save changes</button>
                                 </div>
                             </form>
