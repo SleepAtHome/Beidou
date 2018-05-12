@@ -71,7 +71,6 @@
                 <ol class="breadcrumb" id="aaa">
                     <li><a href="#">首页</a></li>
                     <li><a href="#">用户中心</a></li>
-                    <li><a href="#">个人资料</a></li>
                     <li class="active">修改密码</li>
                 </ol>
             </div>

@@ -100,7 +100,7 @@ public class QuestionsController {
         Date now=new Date();
         questions.setQuestionTime(now);
         questionsService.addOneQuestion(questions);
-        return "question_page/user_question_list";
+        return "user_page/user_index";
     }
 
 

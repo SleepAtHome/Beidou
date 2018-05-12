@@ -49,7 +49,7 @@
             <div class="nav">
                 <ol class="breadcrumb" id="aaa">
                     <li><a href="#">首页</a></li>
-                    <li><a href="#">栏目</a></li>
+                    <li><a href="#">生涯规划</a></li>
                     <li class="active">自我评估</li>
                 </ol>
             </div>
