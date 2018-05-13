@@ -115,6 +115,7 @@
                                 for (Answer an : anList) {
                         %>
                         <p class=""><%=an.getAnswerContents() %>
+                            <hr>
                         </p>
                         <%
                                 }

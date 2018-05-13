@@ -51,6 +51,12 @@
     where question_title = #{0}
   </select>
 
+  <select id="getOneQuestionAnswerNum" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select count(*)
+    from t_answer
+    where question_id = #{0}
+  </select>
+
   <select id="getAllQuestionsNum" resultType="java.lang.Integer" >
     SELECT COUNT(question_id) FROM t_questions
   </select>

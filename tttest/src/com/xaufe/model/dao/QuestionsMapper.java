@@ -29,4 +29,7 @@ public interface QuestionsMapper {
 
     // 模糊查询问题
     List<Questions> getFiltrateQuestions(String str);
+
+    // 返回单个问题的回答个数
+    int getOneQuestionAnswerNum (Integer questionId);
 }

@@ -72,7 +72,7 @@
                     <li class="list-group-item">
 
                         <span class="badge"
-                              style="background-color: #5bc0de; border-radius: 6x;"><%=q.getAccount()%>回答</span>
+                              style="background-color: #5bc0de;"><%=q.getAccount()%>回答</span>
                         <a href="${pageContext.request.contextPath}/questions/question_getOnequestion?action=getOnequestion&id=<%=q.getQuestionId()%>"><%=q.getQuestionTitle() %>
                         </a></li>
                     <%
@@ -83,35 +83,36 @@
                     <li class="list-group-item">
 
 
-                        <%--   	<nav>
-                          <ul class="pagination">
-                            <li>
-                              <a href="question?pageNo=<%=pd.getPageNo()-1>0?pd.getPageNo()-1:1 %>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                              </a>
-                            </li>
-                            <%
-                            for(int i=pd.getStart();i<=pd.getEnd();i++)
-                            {
-                            %>
-                            <li><a href="question?pageNo=<%=i%>"><%=i%></a></li>
-                            <%
-                            }
-                            %>
+                       <%-- <nav>
+                            <ul class="pagination">
+                                <li>
+                                    <a href="question?pageNo=<%=pd.getPageNo()-1>0?pd.getPageNo()-1:1 %>"
+                                       aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <%
+                                    for (int i = pd.getStart(); i <= pd.getEnd(); i++) {
+                                %>
+                                <li><a href="question?pageNo=<%=i%>"><%=i%>
+                                </a></li>
+                                <%
+                                    }
+                                %>
 
-                            <li>
-                            <%
-                              int nexpage=(pd.getPageNo()+1)>pd.getTotalPage()?pd.getTotalPage():(pd.getPageNo()+1);
-                            %>
-                              <a href="question?pageNo=<%=nexpage%>" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                              </a>
-                            </li>
-                            <li>
-                            当前<%=pd.getPageNo()%>/<%=pd.getTotalPage()%>&nbsp;&nbsp;总共<%=pd.getTotalCount()%>条
-                            </li>
-                          </ul>
-                        </nav> --%>
+                                <li>
+                                    <%
+                                        int nexpage = (pd.getPageNo() + 1) > pd.getTotaoPage() ? pd.getTotaoPage() : (pd.getPageNo() + 1);
+                                    %>
+                                    <a href="question?pageNo=<%=nexpage%>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    当前<%=pd.getPageNo()%>/<%=pd.getTotaoPage()%>&nbsp;&nbsp;总共<%=pd.getTotalCount()%>条
+                                </li>
+                            </ul>
+                        </nav>--%>
                     </li>
                 </ul>
 
