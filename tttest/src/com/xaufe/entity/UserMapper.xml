@@ -559,4 +559,11 @@
     set user_password = #{1}
     where user_id = #{0}
   </update>
+
+  <update id="updateUserImg" >
+    update t_user
+    set user_img = #{1},
+    user_desc = #{2}
+    where user_id = #{0}
+  </update>
 </mapper>

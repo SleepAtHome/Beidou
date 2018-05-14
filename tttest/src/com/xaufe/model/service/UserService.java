@@ -18,7 +18,7 @@ public interface UserService {
     void updateUser(User user);
     void modifyUserPassword(Integer userId, String userNewPassword);
 
-
+    void addUserImg(Integer userId, String imgPath, String imgDesc);
 
 }
 

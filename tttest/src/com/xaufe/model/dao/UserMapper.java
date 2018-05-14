@@ -38,4 +38,7 @@ public interface UserMapper {
 
     // 用户修改密码
     int updateUserPassword(Integer userId, String userNewPassword);
+
+    // 用户增加头像和头像描述
+    int updateUserImg(Integer userId, String imgPath, String imgDesc);
 }

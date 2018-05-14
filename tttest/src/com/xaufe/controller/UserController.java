@@ -6,14 +6,15 @@ import com.xaufe.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.util.Arrays;
+import java.io.*;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +26,103 @@ import static com.xaufe.util.Constant.ONLINE_USER;
 public class UserController {
     @Autowired
     UserService userService;
+
+    /**
+     * 用户图片上传
+     * @param request
+     * @param userDesc
+     * @param userImg
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("upload_userImg")
+    public String userUploadImg(HttpServletRequest request, @RequestParam("userDesc") String userDesc,
+                                @RequestParam("userImg") MultipartFile userImg) throws IOException {
+        System.out.println(userDesc);
+        User user = (User) request.getSession().getAttribute(ONLINE_USER);
+        Integer userId = user.getUserId();
+        String userEmail = user.getUserEmail();
+        //如果文件不为空，写入上传路径
+        if(!userImg.isEmpty()) {
+            //上传文件路径 D:\workspace\Beidou\tttest\out\artifacts\tttest_war_exploded\images
+            String path = request.getServletContext().getRealPath("/images/");
+            //上传文件名
+            String filename = userImg.getOriginalFilename();
+            File filepath = new File(path,filename);
+            //判断路径是否存在，如果不存在就创建一个
+            if (!filepath.getParentFile().exists()) {
+                filepath.getParentFile().mkdirs();
+            }
+            // 图片路径
+            String picturePath = path + File.separator + userEmail + filename;
+            //将上传文件保存到一个目标文件当中
+            userImg.transferTo(new File(picturePath));
+
+            userService.addUserImg(userId, picturePath, userDesc);
+            return "user_page/user_index";
+        } else {
+            return "redirect:login";
+        }
+
+/*
+        // 1、得到 FileItem 的集合 items
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+
+        // 设置内存中最多可以存放的上传文件的大小，若超出，则把文件写到一个临时文件夹中，以byte为单位（这里是500K）
+        factory.setSizeThreshold(1024*500);
+        // 设置临时的文件夹
+        File tempDir = new File("d:\\tempDir");
+        factory.setRepository(tempDir);
+
+        ServletFileUpload upload = new ServletFileUpload(factory);
+
+        // 设置上传文件总的大小的上限，也可以设置单个文件大小的上限(这里是5M)
+        upload.setSizeMax(1024*1024*5);
+
+            List<FileItem> items = upload.parseRequest(req);
+            // 2、遍历items：
+            for (FileItem item : items){
+                // 若是一个一般的表单域，打印信息
+                if (item.isFormField()){
+                    String name = item.getFieldName();
+                    String value = item.getString();
+                    System.out.println(name+" = "+value);
+                }
+                // 若是一个文件域，则把文件保存到 d:\\files 目录下
+                else {
+                    String fieldName = item.getFieldName();
+                    String fileName = item.getName();
+                    String contentType = item.getContentType();
+                    boolean isInMemory = item.isInMemory();
+                    long sizeInBytes = item.getSize();
+
+                    System.out.println(fieldName);
+                    System.out.println(fileName);
+                    System.out.println(contentType);
+                    System.out.println(isInMemory);
+                    System.out.println(sizeInBytes);
+
+                    InputStream in = item.getInputStream();
+                    byte [] buffer = new byte[1024];
+                    int len = 0;
+
+                    fileName = "d:\\files\\"+fileName;
+                    System.out.println(fileName);
+                    OutputStream out = new FileOutputStream(fileName);
+
+                    while ((len = in.read(buffer))!=-1){
+                        out.write(buffer,0 , len);
+                    }
+                    out.close();
+                    in.close();
+                }
+            }
+
+
+*/
+
+
+    }
 
     //跳转到user_password_modify
     @RequestMapping("user_password_modify")

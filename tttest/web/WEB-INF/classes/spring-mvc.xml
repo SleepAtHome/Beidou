@@ -16,6 +16,10 @@
 	<mvc:resources mapping="/kindeditor/**" location="/kindeditor/"/>
 	<mvc:default-servlet-handler/>
 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 上传尺寸为B ，这里是1M -->
+		<property name="maxUploadSize" value="1048576"/>
+	</bean>
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/content/" p:suffix=".jsp"/>	 
 	 
 
