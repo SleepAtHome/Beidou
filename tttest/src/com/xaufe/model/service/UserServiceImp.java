@@ -44,6 +44,12 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    public String getUserImg(Integer userId) {
+        String userImgpath = userMapper.selectUserImgPath(userId);
+        return userImgpath;
+    }
+
+    @Override
     public List<String> getUsersEmail() {
         List<String> userEmail=userMapper.getUsersEmail();
         return userEmail;

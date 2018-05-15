@@ -41,4 +41,7 @@ public interface UserMapper {
 
     // 用户增加头像和头像描述
     int updateUserImg(Integer userId, String imgPath, String imgDesc);
+
+    // 得到用户头像路径
+    String selectUserImgPath(Integer userId);
 }

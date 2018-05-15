@@ -27,6 +27,18 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @RequestMapping("user_info_modify")
+    public ModelAndView userInfoModify(HttpServletRequest req, HttpServletResponse resp){
+        ModelAndView modelAndView = new ModelAndView("user_page/user_info_modify");
+        User olUser= (User) req.getSession().getAttribute("OnlineUser");
+        int olUserId=olUser.getUserId();
+
+        String userImgpath = userService.getUserImg(olUserId);
+        modelAndView.addObject("userImgPath",userImgpath);
+
+        return modelAndView;
+    }
+
     /**
      * 用户图片上传
      * @param request
@@ -58,7 +70,7 @@ public class UserController {
             //将上传文件保存到一个目标文件当中
             userImg.transferTo(new File(picturePath));
 
-            userService.addUserImg(userId, picturePath, userDesc);
+            userService.addUserImg(userId, "/images/"+ userEmail + filename, userDesc);
             return "user_page/user_index";
         } else {
             return "redirect:login";

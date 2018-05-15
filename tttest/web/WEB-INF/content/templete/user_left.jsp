@@ -60,11 +60,10 @@
             <ul id="sub5" class="nav collapse">
                 <li><a href="${pageContext.request.contextPath}/jump/Jump2user_info"><span
                         class="glyphicon glyphicon-user"></span>&nbsp;个人资料</a></li>
-                <li><a href="${pageContext.request.contextPath}/jump/Jump2user_info_modify"><span
+                <li><a href="${pageContext.request.contextPath}/user/user_info_modify"><span
                         class="glyphicon glyphicon-edit"></span>&nbsp;修改个人资料</a></li>
                 <li><a href="${pageContext.request.contextPath}/jump/Jump2user_xinde"><span
                         class="glyphicon glyphicon-list"></span>&nbsp;填报心得</a></li>
-
 
             </ul>
 

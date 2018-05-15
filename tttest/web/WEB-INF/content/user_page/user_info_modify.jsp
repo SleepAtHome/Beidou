@@ -82,7 +82,8 @@
                 <li role="presentation"><a href="#">修改密码</a></li>
             </ul>
             <div style="height: 40px;"></div>
-            <img src="">
+            ${requestScope.userImgPath}
+            当前头像：<img src="${pageContext.request.contextPath}${requestScope.userImgPath}" height="40" width="40">
             <form action="${pageContext.request.contextPath}/user/upload_userImg" enctype="multipart/form-data" method="post">
                 
                 用户头像：<input type="file" name="userImg">
