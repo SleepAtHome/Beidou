@@ -82,7 +82,9 @@
                 <li role="presentation"><a href="#">修改密码</a></li>
             </ul>
             <div style="height: 40px;"></div>
+            <img src="">
             <form action="${pageContext.request.contextPath}/user/upload_userImg" enctype="multipart/form-data" method="post">
+                
                 用户头像：<input type="file" name="userImg">
                 用户描述：<input type="text" name="userDesc">
                 <input type="submit" value="Submit">

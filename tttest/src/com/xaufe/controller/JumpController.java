@@ -14,6 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("jump")
 public class JumpController {
 
+	// 跳转到学习资料下载
+	@RequestMapping("user_data_download")
+	public String Jump2UserDownload(){
+		return "user_page/user_data_download";
+	}
+
+	// 跳转到辅导课程页面
+	@RequestMapping("user_class")
+	public String Jump2UserClass(){
+		return "user_page/user_class";
+	}
+
 	//跳转到Test
 	@RequestMapping("Jump2test")
 	public String Jump2test(){
