@@ -104,7 +104,7 @@
 					<li class="active">内容</li>
 				</ol>
 			</div>
-			<img src="${pageContext.request.contextPath}/img/ad02.png" class="img-responsive" alt="Responsive image">
+			<%--<img src="${pageContext.request.contextPath}/img/ad02.png" class="img-responsive" alt="Responsive image">--%>
 			<div style="height: 40px;"></div>
 			<div style="text-align: center;">
 				<form class="form-horizontal" action="${pageContext.request.contextPath}/user/user_update_xinde" method="post" onsubmit="return check();">

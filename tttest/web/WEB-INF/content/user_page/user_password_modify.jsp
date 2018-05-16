@@ -77,7 +77,6 @@
 
             <ul class="nav nav-pills nav-tabs">
                 <li role="presentation"><a href="${pageContext.request.contextPath}/jump/Jump2user_info">个人资料</a></li>
-                <li role="presentation"><a href="#">更新信息</a></li>
                 <li role="presentation" class="active"><a href="#">修改密码</a></li>
             </ul>
             <div style="height: 40px;"></div>

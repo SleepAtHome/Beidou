@@ -77,18 +77,29 @@
 
 
             <ul class="nav nav-pills nav-tabs">
-                <li role="presentation" class="active"><a href="#">个人资料</a></li>
-                <li role="presentation"><a href="#">更新信息</a></li>
-                <li role="presentation"><a href="#">修改密码</a></li>
+                <li role="presentation" class="active"><a href="#">修改个人信息</a></li>
             </ul>
             <div style="height: 40px;"></div>
-            ${requestScope.userImgPath}
+            <%--${requestScope.userImgPath}--%>
             当前头像：<img src="${pageContext.request.contextPath}${requestScope.userImgPath}" height="40" width="40">
-            <form action="${pageContext.request.contextPath}/user/upload_userImg" enctype="multipart/form-data" method="post">
+            <%--<form action="${pageContext.request.contextPath}/user/upload_userImg" enctype="multipart/form-data" method="post">
                 
                 用户头像：<input type="file" name="userImg">
                 用户描述：<input type="text" name="userDesc">
                 <input type="submit" value="Submit">
+            </form>--%>
+
+            <form action="${pageContext.request.contextPath}/user/upload_userImg" enctype="multipart/form-data" method="post">
+                <div class="form-group">
+                    <label for="userDesc">用户描述</label>
+                    <input type="text" class="form-control" id="userDesc" placeholder="请输入用户描述" name="userDesc">
+                </div>
+                <div class="form-group">
+                    <label for="userImg">用户头像</label>
+                    <input type="file" id="userImg" name="userImg">
+                    <p class="help-block">上传你的头像</p>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <%--<div style="text-align: center;">
                 <hr>

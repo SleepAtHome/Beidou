@@ -81,7 +81,6 @@ KindEditor.ready(function(K) {
 				 	
                      <ul class="nav nav-pills nav-tabs">
 						  <li role="presentation" class="active"><a href="#">个人资料</a></li>
-						  <li role="presentation"><a href="#">更新信息</a></li>
 						  <li role="presentation"><a href="${pageContext.request.contextPath}/user/user_password_modify">修改密码</a></li>
 					</ul>
 					<div style="height: 40px;"></div>
@@ -92,6 +91,7 @@ KindEditor.ready(function(K) {
 				%>
 					<table class="table table-bordered table-hover">
 						<tr><th width="150px">用户昵称：</th><td><%out.println(user.getUserName()); %></td></tr>
+						<tr><th>用户描述：</th><td><%out.println(user.getUserDesc()); %></td></tr>
 						<tr><th>邮箱：</th><td><%out.println(user.getUserEmail()); %></td></tr>
 						<tr><th>考生真实姓名：</th><td><%out.println(user.getUserRealname()); %></td></tr>
 						<tr><th>邮箱：</th><td><%out.println(user.getUserEmail()); %></td></tr>
